@@ -4,18 +4,21 @@
 \alias{bash_job}
 \title{bash job using conda env}
 \usage{
-bash_job(cmd, conda_env, conda_path = NULL, stdout = TRUE, stderr = FALSE)
+bash_job(cmd, conda_env = NULL, conda_path = NULL, stdout = TRUE,
+  stderr = FALSE, cat_output = TRUE)
 }
 \arguments{
 \item{cmd}{bash command to run (eg., "ls -thlc")}
 
 \item{conda_env}{conda environment name}
 
-\item{conda_path}{conda path; if null, then conda assumed to be in your path}
+\item{conda_path}{path to conda executable; if null, then conda assumed to be in your path}
 
 \item{stdout}{return stdout?}
 
 \item{stderr}{return stderr?}
+
+\item{cat_output}{pretty output written to the consol?}
 }
 \description{
 bash job using conda env

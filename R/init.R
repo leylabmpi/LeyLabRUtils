@@ -30,17 +30,29 @@ make_dir = function(dir){
 #'
 #' @param cmd  bash command to run (eg., "ls -thlc")
 #' @param conda_env  conda environment name
-#' @param conda_path  conda path; if null, then conda assumed to be in your path
+#' @param conda_path  path to conda executable; if null, then conda assumed to be in your path
 #' @param stdout  return stdout?
 #' @param stderr  return stderr?
-bash_job = function(cmd, conda_env, conda_path=NULL, stdout=TRUE, stderr=FALSE){
-  # cmd : string; commandline job (eg., 'ls -thlc')
-  # conda_env : string; conda environment name
-  cmd = sprintf('source activate %s; %s', conda_env, cmd)
+#' @param cat_output  pretty output written to the consol?
+bash_job = function(cmd, conda_env=NULL, conda_path=NULL, stdout=TRUE, stderr=FALSE, cat_output=TRUE){
+  # formatting command
+  if(! is.null(conda_env)){
+    cmd = sprintf('source activate %s; %s', conda_env, cmd)
+  }
   if(! is.null(conda_path)){
+    conda_path = gsub('conda$', '', conda_path)
     cmd = paste(c(sprintf('PATH=%s:$PATH', conda_path), cmd), collapse=';')
   }
   cmd = sprintf('-c "%s"', cmd)
-  system2('bash', cmd, stdout=stdout, stderr=stderr)
+
+  # system call
+  ret = system2('bash', cmd, stdout=stdout, stderr=stderr)
+
+  # returning output
+  if (cat_output == TRUE){
+    cat(paste(ret, collapse='\n'))
+  } else {
+    return(ret)
+  }
 }
 

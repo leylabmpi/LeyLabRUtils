@@ -4,3 +4,4 @@
 .Ruserdata
 packrat/
 *.Rproj
+packrat/lib*/
