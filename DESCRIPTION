@@ -1,0 +1,11 @@
+Package: LeyLabRUtils
+Type: Package
+Title: R utilities 
+Version: 0.1.0
+Author: Nick Youngblut
+Maintainer: Nick Youngblut <nyoungblut@tuebingen.mpg.de>
+Description: Simple R functions for the specific computational infrastructure of the Ley Lab
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
