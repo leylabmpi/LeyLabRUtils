@@ -38,7 +38,7 @@ bash_job = function(cmd, conda_env, conda_path=NULL, stdout=TRUE, stderr=FALSE){
   # conda_env : string; conda environment name
   cmd = sprintf('source activate %s; %s', conda_env, cmd)
   if(! is.null(conda_path)){
-    cmd = paste(sprint('PATH=%s:$PATH', conda_path),
+    cmd = paste(sprintf('PATH=%s:$PATH', conda_path),
                 cmd, collapse=' ')
   }
   cmd = sprintf('-c "%s"', cmd)
